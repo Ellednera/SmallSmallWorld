@@ -133,6 +133,7 @@
     <ClCompile Include="InheritancePolymorphism.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="TextParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Human.h" />
     <ClInclude Include="InheritancePolymorphism.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="TextParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

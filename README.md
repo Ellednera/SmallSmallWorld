@@ -9,7 +9,18 @@
 * q
   * quits the program
 
+* list crops
+
 * visit farm
+For simulating singly-linked list
+  * test crops
+    * this tests the Crop class
+  * list crops
+  * uproot crop <id> replant at <index>
+  * purge crop <id>
+  * plant new crop <id> at head
+  * plant new crop <id> at end
+
 * visit factory
 * visit delivery_center
 * leave
