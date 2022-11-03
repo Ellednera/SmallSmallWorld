@@ -3,6 +3,7 @@
 
 #include "TextParser.h"
 #include "InheritancePolymorphism.h"
+#include "SinglyLinkedList.h"
 
 using namespace std;
 
@@ -14,13 +15,14 @@ enum e_spot { FLOATING, FARM, FACTORY, DELIVERY_CENTER };
 bool canLeaveCurrentSpot = false; // for farm, factory and delivery center
 e_spot currentSpot = FLOATING;
 
+
 void printWelcomeBanner(void);
 void initializeEverything(void);
 
 int main() {
 	
 	printWelcomeBanner();
-	
+	CropsListSingle* crop_list = initialise_partial_list();
 	
 	while ("this small small world is operating...") {
 		
@@ -66,6 +68,27 @@ int main() {
 				// only allow in the farm
 				if (currentSpot == FARM) {
 					test_crop();
+				}
+				else {
+					printf("You can only do this in the farm\n");
+				}
+			}
+			else if (strcmp(parsedCommands[0], "inspect") == 0 && strcmp(parsedCommands[1], "crops") == 0) {
+				// only allow in the farm
+				if (currentSpot == FARM) {
+					if ( crop_list == NULL ) {
+						crop_list = initialise_partial_list();
+					}
+					inspect_crops(crop_list);
+				}
+				else {
+					printf("You can only do this in the farm\n");
+				}
+			}
+			else if (strcmp(parsedCommands[0], "purge") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
+				// only allow in the farm
+				if (currentSpot == FARM) {
+					purge_farm(&crop_list);
 				}
 				else {
 					printf("You can only do this in the farm\n");
