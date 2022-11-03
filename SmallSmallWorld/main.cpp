@@ -62,6 +62,15 @@ int main() {
 				canLeaveCurrentSpot = true;
 				currentSpot = DELIVERY_CENTER;
 			}
+			else if (strcmp(parsedCommands[0], "test") == 0 && strcmp(parsedCommands[1], "crops") == 0) {
+				// only allow in the farm
+				if (currentSpot == FARM) {
+					test_crop();
+				}
+				else {
+					printf("You can only do this in the farm\n");
+				}
+			}
 		}
 		else if (count == 1) {
 			if (strcmp(parsedCommands[0], "q") == 0) {

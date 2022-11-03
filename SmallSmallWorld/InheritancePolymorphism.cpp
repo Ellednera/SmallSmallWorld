@@ -44,3 +44,12 @@ void create_house(void) {
 	wanEr = NULL;
 	palace = NULL;
 }
+
+void test_crop(void) {
+	Crop* carrot = new Crop("Computer", "carrot", 2255, 5, 5, 50, 50, 50, 50, "active", false);
+
+	carrot->displayInfo();
+
+	delete carrot;
+	carrot = NULL;
+}
