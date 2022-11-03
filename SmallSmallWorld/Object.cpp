@@ -1,6 +1,6 @@
 #include "Object.h"
 
-Object::Object(const char* owner, const char* id, int x, int y, \
+Object::Object(const char* owner, unsigned int id, int x, int y, \
 	unsigned int maxHP, unsigned int currentHP, unsigned int maxEnergy,
 	unsigned int currentEnergy, const char* gameState) {
 
@@ -21,8 +21,8 @@ Object::Object(const char* owner, const char* id, int x, int y, \
 }
 
 Object::Object() {
-	fOwner = "Computer?";
-	fID = "001?";
+	fOwner = "Computer";
+	fID = 9000;
 	fPosition = { 0, 0 };
 
 	fMaxHP = 100;
@@ -50,7 +50,7 @@ void Object::setOwner(const char* newOwner) {
 	fOwner = newOwner;
 }
 
-const char* Object::getID(void) {
+unsigned int Object::getID(void) {
 	r fID;
 }
 // not setter for fID

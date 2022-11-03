@@ -12,7 +12,7 @@ class Object
 {
 private:
 	const char* fOwner;
-	const char* fID;
+	unsigned int fID;
 	Position fPosition;
 	unsigned int fMaxHP;
 	unsigned int fCurrentHP;
@@ -23,7 +23,7 @@ private:
 	string fMessage;
 
 public:
-	Object(const char* owner, const char* id, int x, int y, \
+	Object(const char* owner, unsigned int id, int x, int y, \
 		unsigned int maxHP, unsigned int currentHP, unsigned int maxEnergy,
 		unsigned int currentEnergy, const char* gameState);
 
@@ -35,7 +35,7 @@ public:
 
 	void setOwner(const char* newOwner);
 
-	const char* getID(void);
+	unsigned int getID(void);
 	// no setter for fID
 
 	Position getPosition(void);

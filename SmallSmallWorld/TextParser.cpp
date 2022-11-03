@@ -1,6 +1,6 @@
 #include "TextParser.h"
 
-#define MAX_INPUT_TEXT_LENGTH 50
+#define MAX_INPUT_TEXT_LENGTH 100
 #define MAX_SUB_TEXT_LENGTH 15
 
 char text[MAX_INPUT_TEXT_LENGTH] = "";

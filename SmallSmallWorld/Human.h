@@ -15,7 +15,7 @@ private:
 	e_family_status fFamilyStatus;
 
 public:
-	Human(const char* owner, const char* id, int x, int y, \
+	Human(const char* owner, unsigned int id, int x, int y, \
 		unsigned int maxHP, unsigned int currentHP, unsigned int maxEnergy,
 		unsigned int currentEnergy, const char* gameState, const char* gender, \
 		const char* firstName, const char* lastName, const char* familyStatus);

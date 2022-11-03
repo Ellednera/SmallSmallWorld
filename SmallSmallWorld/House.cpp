@@ -1,6 +1,6 @@
 #include "House.h"
 
-House::House(const char* owner, const char* id, int x, int y, \
+House::House(const char* owner, unsigned int id, int x, int y, \
 	unsigned int maxHP, unsigned int currentHP, unsigned int maxEnergy,
 	unsigned int currentEnergy, const char* gameState, \
 	Human* houseOwner, bool ownerIn, bool doorOpened, int totalResidents, bool lightsOn) : \
