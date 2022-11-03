@@ -8,3 +8,10 @@
   * clear console
 * q
   * quits the program
+
+* visit farm
+* visit factory
+* visit delivery_center
+* leave
+  * only useful in farm, factory and delivery center
+    

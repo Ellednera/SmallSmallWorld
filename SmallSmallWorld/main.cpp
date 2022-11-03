@@ -50,10 +50,21 @@ int main() {
 				canLeaveCurrentSpot = true;
 				currentSpot = FARM;
 			}
+			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "factory") == 0) {
+				// location set to (0, 0), might be useless :)
+				printf("You're at the factory\n");
+				canLeaveCurrentSpot = true;
+				currentSpot = FACTORY;
+			}
+			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "delivery_center") == 0) {
+				// location set to (50, -25), might be useless :)
+				printf("You're at the delivery center\n");
+				canLeaveCurrentSpot = true;
+				currentSpot = DELIVERY_CENTER;
+			}
 		}
 		else if (count == 1) {
 			if (strcmp(parsedCommands[0], "q") == 0) {
-				//exitCode = 10; // very problematic
 				break;
 			}
 			else if (strcmp(parsedCommands[0], "cls") == 0) {
@@ -72,9 +83,10 @@ int main() {
 						printf("You left the delivery center\n");
 					}
 					currentSpot = FLOATING;
+					canLeaveCurrentSpot = false;
 				}
 				else {
-					printf("This command is only useful when you're in the farm, factory or delivery center\n");
+					printf("This command is only useful in the farm, factory or delivery center\n");
 				}
 			}
 		}
