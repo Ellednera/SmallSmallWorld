@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 #include "TextParser.h"
 #include "InheritancePolymorphism.h"
@@ -9,8 +10,11 @@ using namespace std;
 unsigned int uid = 1;
 Object* objects_collection[20] = { NULL };
 
+enum e_spot { FLOATING, FARM, FACTORY, DELIVERY_CENTER };
+bool canLeaveCurrentSpot = false; // for farm, factory and delivery center
+e_spot currentSpot = FLOATING;
+
 void printWelcomeBanner(void);
-int string_to_int(const char* text);
 void initializeEverything(void);
 
 int main() {
@@ -40,6 +44,12 @@ int main() {
 			if (strcmp(parsedCommands[0], "hello") == 0 && strcmp(parsedCommands[1], "world") == 0) {
 				printf("Executing `hello world`...\n");
 			}
+			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
+				// location set to (-250, -100), might be useless :)
+				printf("You're at the farm\n");
+				canLeaveCurrentSpot = true;
+				currentSpot = FARM;
+			}
 		}
 		else if (count == 1) {
 			if (strcmp(parsedCommands[0], "q") == 0) {
@@ -48,6 +58,24 @@ int main() {
 			}
 			else if (strcmp(parsedCommands[0], "cls") == 0) {
 				system("cls");
+			}
+			else if (strcmp(parsedCommands[0], "leave") == 0) {
+
+				if (canLeaveCurrentSpot) {
+					if (currentSpot == FARM) {
+						printf("You left the farm\n");
+					}
+					else if (currentSpot == FACTORY) {
+						printf("You left the factory\n");
+					}
+					else if (currentSpot == DELIVERY_CENTER) {
+						printf("You left the delivery center\n");
+					}
+					currentSpot = FLOATING;
+				}
+				else {
+					printf("This command is only useful when you're in the farm, factory or delivery center\n");
+				}
 			}
 		}
 		else if (count == 4) {
@@ -65,16 +93,14 @@ int main() {
 				// find human id parsedCommand[1] from link list
 				// modify position
 				// for simplicity sake, just use the input id to create a new human :)
-				int human_id = string_to_int(parsedCommands[1]);
-				int x = 0;
-				int y = 0;
+				int human_id = atoi(parsedCommands[2]);
 				
 				Human* jasmine = new Human("Player", human_id, 15, 15, 100, 100, 100, 100, "active", "female", "Jasmine", "Tan", "single");
 
 				cout << "Original position: (" << jasmine->getPosition().x << ","<< jasmine->getPosition().y << ")" << endl;
 
-				x = string_to_int(parsedCommands[4]);
-				y = string_to_int(parsedCommands[5]);
+				int x = atoi(parsedCommands[4]);
+				int y = atoi(parsedCommands[5]);
 				jasmine->setPosition(x, y);
 
 
@@ -110,29 +136,4 @@ int main() {
 
 void printWelcomeBanner(void) {
 	cout << "Welcome to Small Small World~" << endl;
-}
-
-int string_to_int(const char* text) {
-	if (strcmp(text, "0") == 0)
-		return 0;
-	else if (strcmp(text, "1") == 0)
-		return 1;
-	else if (strcmp(text, "2") == 0)
-		return 2;
-	else if (strcmp(text, "3") == 0)
-		return 3;
-	else if (strcmp(text, "4") == 0)
-		return 4;
-	else if (strcmp(text, "5") == 0)
-		return 5;
-	else if (strcmp(text, "6") == 0)
-		return 6;
-	else if (strcmp(text, "7") == 0)
-		return 7;
-	else if (strcmp(text, "8") == 0)
-		return 8;
-	else if (strcmp(text, "9") == 0)
-		return 9;
-	else if (strcmp(text, "0") == 0)
-		return 0;
 }
