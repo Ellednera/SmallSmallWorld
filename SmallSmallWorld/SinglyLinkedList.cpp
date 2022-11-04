@@ -26,18 +26,19 @@ CropsListSingle* initialise_partial_list(void) {
 
 		CropNode* crop_node = new CropNode(crop);		
 
-		plant_crop_node_as_tail(&crops_sll, crop_node);
+		//plant_crop_node_as_tail(&crops_sll, crop_node);
+		plant_crop_node_as_head(&crops_sll, crop_node);
 	}
 	
 	return crops_sll;
 }
 
-bool is_empty(CropsListSingle list) {
-	return list.total_crops == 0;
+bool sll_is_empty(CropsListSingle* list) {
+	return list->total_crops == 0;
 }
 
-bool is_full(CropsListSingle list) {
-	return list.total_crops == MAX_CROPS;
+bool sll_is_full(CropsListSingle* list) {
+	return list->total_crops == MAX_CROPS;
 }
 
 void inspect_crops(CropsListSingle* list) {
@@ -48,6 +49,21 @@ void inspect_crops(CropsListSingle* list) {
 		cout << " is " << current_node->getCrop()->getCropName() << endl;
 		current_node = current_node->getNextCropNode();
 	}
+}
+
+void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node) {
+	if (sll_is_full(*list))
+		return;
+
+	if ( sll_is_empty(*list) ) {
+		(*list)->head = (*list)->tail = crop_node;
+	}
+	else {
+		crop_node->setNextCropNode( (*list)->head );
+		(*list)->head = crop_node;
+	}
+
+	(*list)->total_crops++;
 }
 
 void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node) {

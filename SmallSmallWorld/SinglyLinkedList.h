@@ -32,7 +32,7 @@ void plant_crop_at(CropsListSingle* list, unsigned int crop_id, int location);
 
 // for list manipulation, to make life easier
 CropNode* find_crop_node(CropsListSingle* list, unsigned int crop_id);
-void plant_crop_node_as_head(CropsListSingle* list, CropNode* crop_node);
+void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node);
 void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node);
 void plant_crop_node_at(CropsListSingle* list, CropNode* crop_node, int location);
 
