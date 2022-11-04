@@ -17,7 +17,7 @@ Crop::Crop() {
 }
 
 Crop::~Crop() {
-	cout << "`Crop` object (" << getID() << ") destroyed..." << endl;
+	cout << "`Crop` object (" << getID() << ":" << getCropName() << ") destroyed..." << endl;
 }
 
 

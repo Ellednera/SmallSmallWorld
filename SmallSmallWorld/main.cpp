@@ -155,19 +155,19 @@ int main() {
 			}
 		}
 		else if (count == 7) {
+		// buggy
+		// do this: plant tail once, then head once, purge
 			if (strcmp(parsedCommands[0], "plant") == 0 && strcmp(parsedCommands[1], "new") == 0 && strcmp(parsedCommands[2], "crop") == 0 \
 				&& strcmp(parsedCommands[5], "at") == 0 && strcmp(parsedCommands[6], "tail") == 0) {
-
-				const char* crop_name = parsedCommands[4];
-				plant_crop_as_tail(&crop_list, atoi(parsedCommands[3]), crop_name);
 				
+				plant_crop_as_tail(&crop_list, atoi(parsedCommands[3]), parsedCommands[4]);
+
 			}
 			else if (strcmp(parsedCommands[0], "plant") == 0 && strcmp(parsedCommands[1], "new") == 0 && strcmp(parsedCommands[2], "crop") == 0 \
 				&& strcmp(parsedCommands[5], "at") == 0 && strcmp(parsedCommands[6], "head") == 0) {
 				
-				cout << "Ready to plant " << parsedCommands[4] << " at head" << endl;
-				const char* crop_name = parsedCommands[4];
-				plant_crop_as_head(&crop_list, atoi(parsedCommands[3]), crop_name);
+				plant_crop_as_head(&crop_list, atoi(parsedCommands[3]), parsedCommands[3]);
+				
 			}
 		}
 		// free the text parser array
