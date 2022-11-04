@@ -51,6 +51,17 @@ void inspect_crops(CropsListSingle* list) {
 	}
 }
 
+void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
+
+void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char* crop_name) {
+	//cout << "Ready to plant " << crop_name << " at tail" << endl;
+	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
+	CropNode* node = new CropNode(crop);
+	//cout << node->getCrop()->getCropName() << endl;
+
+	plant_crop_node_as_tail(list, node);
+}
+
 void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node) {
 	if (sll_is_full(*list))
 		return;
@@ -67,6 +78,7 @@ void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node) {
 }
 
 void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node) {
+	//cout << crop_node->getCrop()->getCropName() << endl;
 	if ( (*list)->total_crops == MAX_CROPS )
 		return;
 	

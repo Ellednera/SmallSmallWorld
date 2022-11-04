@@ -7,9 +7,10 @@ Crop::Crop(const char* owner, const char* crop_name, unsigned int id, int x, int
 
 	this->crop_name = crop_name;
 	this->is_ripe = is_ripe;
-	cout << "`Crop` object (" << getID() << ") created..." << endl;
+	cout << "`Crop` object (" << getID() <<") created..." << endl;
 }
 
+// do not use this!!!
 Crop::Crop() {
 	this->crop_name = "carrot";
 	this->is_ripe = false;

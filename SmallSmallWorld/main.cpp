@@ -154,7 +154,15 @@ int main() {
 				jasmine = NULL;
 			}
 		}
+		else if (count == 7) {
+			if (strcmp(parsedCommands[0], "plant") == 0 && strcmp(parsedCommands[1], "new") == 0 && strcmp(parsedCommands[2], "crop") == 0 \
+				&& strcmp(parsedCommands[5], "at") == 0 && strcmp(parsedCommands[6], "tail") == 0) {
 
+				const char* crop_name = parsedCommands[4];
+				plant_crop_as_tail(&crop_list, atoi(parsedCommands[3]), crop_name);
+				
+			}
+		}
 		// free the text parser array
 		for (int i = 0; i < count; i++) {
 			free(parsedCommands[i]);

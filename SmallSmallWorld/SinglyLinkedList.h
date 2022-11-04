@@ -26,8 +26,8 @@ Crop* get_tail_crop(CropsListSingle* list); // returning an actual Crop object
 void inspect_crops(CropsListSingle* list);
 
 // no modification of crop data, makes no sense :)
-void plant_crop_as_head(CropsListSingle* list, unsigned int crop_id);
-void plant_crop_as_tail(CropsListSingle* list, unsigned int crop_id);
+void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
+void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
 void plant_crop_at(CropsListSingle* list, unsigned int crop_id, int location);
 
 // for list manipulation, to make life easier
