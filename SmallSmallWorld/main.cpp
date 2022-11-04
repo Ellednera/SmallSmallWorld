@@ -94,9 +94,46 @@ int main() {
 					printf("You can only do this in the farm\n");
 				}
 			}
+			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
+				Crop* carrot = new Crop("Computer", "carrot", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+				Crop* apple = new Crop("Computer", "apple", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+				Crop* banana = new Crop("Computer", "banana", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+				Crop* orange = new Crop("Computer", "orange", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+
+				CropNode* carrot_node = new CropNode(carrot);
+				CropNode* apple_node = new CropNode(apple);
+
+				CropNode* banana_node = new CropNode(banana);
+				CropNode* orange_node = new CropNode(orange);
+
+				system("pause");
+
+				cout << "Adding carrot at head..." << endl;
+				plant_crop_node_as_head(&crop_list, carrot_node);
+				cout << "Adding apple at head..." << endl;
+				plant_crop_node_as_head(&crop_list, apple_node);
+
+				cout << "Adding banana at tail..." << endl;
+				plant_crop_node_as_tail(&crop_list, banana_node);
+				cout << "Adding orange at tail..." << endl;
+				plant_crop_node_as_tail(&crop_list, orange_node);
+
+				cout << "Press enter to inspect crops..." << endl;
+				system("pause");
+
+				inspect_crops(crop_list);
+
+				cout << "Press enter to purge all the crops..." << endl;
+				system("pause");
+				purge_farm(&crop_list);
+				crop_list = NULL;
+			}
 		}
 		else if (count == 1) {
 			if (strcmp(parsedCommands[0], "q") == 0) {
+				if ( crop_list != NULL ) {
+					purge_farm(&crop_list);
+				}
 				break;
 			}
 			else if (strcmp(parsedCommands[0], "cls") == 0) {

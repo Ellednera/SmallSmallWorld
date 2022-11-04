@@ -96,7 +96,7 @@ void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node) {
 		(*list)->tail->setNextCropNode(crop_node);
 	}
 
-	cout << (*list)->total_crops << " = " << crop_node->getCrop()->getCropName() << endl;
+	//cout << (*list)->total_crops << " = " << crop_node->getCrop()->getCropName() << endl;
 
 	// update SLL metadata
 	(*list)->tail = crop_node;

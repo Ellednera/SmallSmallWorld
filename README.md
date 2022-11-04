@@ -17,11 +17,11 @@
 
   * test crops
     * this tests the Crop class
-  * list crops
-  * uproot crop \<id\> replant at \<index\>
-  * purge crop \<id\>
-  * plant new crop \<id\> \<crop_name\> at head
-  * plant new crop \<id\> \<crop_name\> at end
+  * inspect crops
+  * simulate farm
+  * purge farm
+  * Buggy: plant new crop \<id\> \<crop_name\> at head
+  * Buggy: plant new crop \<id\> \<crop_name\> at tail
 
 * visit factory
 * visit delivery_center
