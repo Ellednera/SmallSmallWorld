@@ -51,7 +51,12 @@ void inspect_crops(CropsListSingle* list) {
 	}
 }
 
-void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
+void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name) {
+	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
+	CropNode* node = new CropNode(crop);
+
+	plant_crop_node_as_head(list, node);
+}
 
 void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char* crop_name) {
 	//cout << "Ready to plant " << crop_name << " at tail" << endl;
