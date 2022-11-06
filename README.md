@@ -19,12 +19,14 @@
     * this tests the Crop class
   * inspect crops
   * simulate farm
+    * simulates all the features in a singly-linked list
   * purge farm
   * Buggy: plant new crop \<id\> \<crop_name\> at head
   * Buggy: plant new crop \<id\> \<crop_name\> at tail
 
-* visit factory
-* visit delivery_center
+  * harvest crops
+  * marinate cabbage
+
 * leave
   * only useful in farm, factory and delivery center
     
