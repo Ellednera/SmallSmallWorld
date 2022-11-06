@@ -134,6 +134,7 @@
     <ClCompile Include="InheritancePolymorphism.cpp" />
     <ClCompile Include="Iterator1D.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MarinateCabbage.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Human.h" />
     <ClInclude Include="InheritancePolymorphism.h" />
     <ClInclude Include="Iterator1D.h" />
+    <ClInclude Include="MarinateCabbage.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="Stack.h" />

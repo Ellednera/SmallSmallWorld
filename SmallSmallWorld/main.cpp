@@ -5,6 +5,7 @@
 #include "InheritancePolymorphism.h"
 #include "SinglyLinkedList.h"
 #include "Iterator1D.h"
+#include "Stack.h"
 
 using namespace std;
 
