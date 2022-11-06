@@ -4,6 +4,7 @@
 #include "TextParser.h"
 #include "InheritancePolymorphism.h"
 #include "SinglyLinkedList.h"
+#include "Iterator1D.h"
 
 using namespace std;
 
