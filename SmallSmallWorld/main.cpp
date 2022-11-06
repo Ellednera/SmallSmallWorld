@@ -99,12 +99,16 @@ int main() {
 				Crop* apple = new Crop("Computer", "apple", uid++, 1, 1, 100, 100, 100, 100, "active", false);
 				Crop* banana = new Crop("Computer", "banana", uid++, 1, 1, 100, 100, 100, 100, "active", false);
 				Crop* orange = new Crop("Computer", "orange", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+				Crop* peach = new Crop("Computer", "peach", uid++, 1, 1, 100, 100, 100, 100, "active", false);
 
+				// for planting as head
 				CropNode* carrot_node = new CropNode(carrot);
 				CropNode* apple_node = new CropNode(apple);
-
+				// for planting as tail
 				CropNode* banana_node = new CropNode(banana);
 				CropNode* orange_node = new CropNode(orange);
+				// for random insertion
+				CropNode* peach_node = new CropNode(peach);
 
 				system("pause");
 
@@ -117,6 +121,9 @@ int main() {
 				plant_crop_node_as_tail(&crop_list, banana_node);
 				cout << "Adding orange at tail..." << endl;
 				plant_crop_node_as_tail(&crop_list, orange_node);
+
+				cout << "Adding peach at location 4..." << endl;
+				plant_crop_node_at(&crop_list, peach_node, 4);
 
 				cout << "Press enter to inspect crops..." << endl;
 				system("pause");

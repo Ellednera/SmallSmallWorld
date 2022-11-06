@@ -28,13 +28,13 @@ void inspect_crops(CropsListSingle* list);
 // no modification of crop data, makes no sense :)
 void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
 void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char* crop_name);
-void plant_crop_at(CropsListSingle* list, unsigned int crop_id, int location);
+void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* crop_name, int location);
 
 // for list manipulation, to make life easier
 CropNode* find_crop_node(CropsListSingle* list, unsigned int crop_id);
 void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node);
 void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node);
-void plant_crop_node_at(CropsListSingle* list, CropNode* crop_node, int location);
+void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int location);
 
 // for reading data only
 Crop* find_crop(CropsListSingle* list, unsigned int crop_id);

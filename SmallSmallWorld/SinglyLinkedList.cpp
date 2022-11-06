@@ -103,6 +103,37 @@ void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node) {
 	(*list)->total_crops++;
 }
 
+void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* crop_name, int location) {
+	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
+	CropNode* node = new CropNode(crop);
+
+	plant_crop_node_at(list, node, location);
+}
+
+/// <summary>
+/// Plants at (location + 1)th, ie inserts the node after the specified location
+/// </summary>
+/// <param name="list"></param>
+void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int location) {
+	if ( sll_is_empty(*list) ) {
+		plant_crop_node_as_head(list, crop_node);
+	}
+	else if ( (*list)->total_crops == 1 ) {
+		plant_crop_node_as_tail(list, crop_node);
+	}
+	else {
+		CropNode* temp = (*list)->head;
+		for (int i = 0; i < (location - 1); i++) {
+			temp = temp->getNextCropNode();
+		}
+		CropNode* nextNode = temp->getNextCropNode();
+		crop_node->setNextCropNode(nextNode);
+		temp->setNextCropNode(crop_node);
+		(*list)->total_crops++;
+	}
+}
+
+
 void purge_farm(CropsListSingle** list) {
 	while ( (*list)->head != NULL) {
 		CropNode* node = (*list)->head;
