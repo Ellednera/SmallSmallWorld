@@ -31,14 +31,12 @@ void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char
 void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* crop_name, int location);
 
 // for list manipulation, to make life easier
-CropNode* find_crop_node(CropsListSingle* list, unsigned int crop_id);
 void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node);
 void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node);
 void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int location);
 
 // for reading data only
-Crop* find_crop(CropsListSingle* list, unsigned int crop_id);
-Crop* find_crop_increased_chance(CropsListSingle* list, unsigned int crop_id); // last to do
+Crop* find_crop(CropsListSingle** list, unsigned int crop_id); // return Crop object, not the node
 
 // plants at the right side of the located crop
 void replant_crop(CropsListSingle* list, unsigned int crop_id, int new_location); // find_crop_node() + plant_crop_node_at()

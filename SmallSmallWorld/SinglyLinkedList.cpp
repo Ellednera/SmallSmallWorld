@@ -51,6 +51,19 @@ void inspect_crops(CropsListSingle* list) {
 	}
 }
 
+Crop* find_crop(CropsListSingle** list, unsigned int crop_id) {
+	if ( sll_is_empty(*list) )
+		return NULL;
+
+	CropNode* found = (*list)->head;
+	while ( found && (found->getCrop()->getID() != crop_id) ) {
+
+		found = found->getNextCropNode();
+	}
+
+	return found->getCrop();
+}
+
 void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name) {
 	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
 	CropNode* node = new CropNode(crop);

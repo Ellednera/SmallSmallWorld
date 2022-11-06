@@ -130,6 +130,18 @@ int main() {
 
 				inspect_crops(crop_list);
 
+				int crop_id = 5;
+				cout << "Press enter to search crop#" << crop_id << endl;
+				system("pause");
+				
+				Crop* found_crop = find_crop(&crop_list, crop_id);
+				if ( found_crop ) {
+					cout <<  "Found crop #" << crop_id << "-->" << found_crop->getCropName() << endl;
+				}
+				else {
+					cout << "Couldn't find the crop you wanted, please check your codes :)" << endl;
+				}
+
 				cout << "Press enter to purge all the crops..." << endl;
 				system("pause");
 				purge_farm(&crop_list);
