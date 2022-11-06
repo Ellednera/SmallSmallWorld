@@ -20,6 +20,11 @@ e_spot currentSpot = FLOATING;
 void printWelcomeBanner(void);
 void initializeEverything(void);
 
+void _process_1d_iterator(const char* bag_ptr[], int size);
+void _1d_iter_post_increment(Iterator1D* iter, int times);
+void _1d_iter_post_decrement(Iterator1D* iter, int times);
+void compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times);
+
 int main() {
 	
 	printWelcomeBanner();
@@ -77,7 +82,7 @@ int main() {
 			else if (strcmp(parsedCommands[0], "inspect") == 0 && strcmp(parsedCommands[1], "crops") == 0) {
 				// only allow in the farm
 				if (currentSpot == FARM) {
-					if ( crop_list == NULL ) {
+					if (crop_list == NULL) {
 						crop_list = initialise_partial_list();
 					}
 					inspect_crops(crop_list);
@@ -138,10 +143,10 @@ int main() {
 				int crop_id = 5;
 				cout << "Press enter to search crop#" << crop_id << endl;
 				system("pause");
-				
+
 				Crop* found_crop = find_crop(&crop_list, crop_id);
-				if ( found_crop ) {
-					cout <<  "Found crop#" << crop_id << endl;
+				if (found_crop) {
+					cout << "Found crop#" << crop_id << endl;
 					found_crop->displayInfo();
 				}
 				else {
@@ -178,6 +183,15 @@ int main() {
 				system("pause");
 				purge_farm(&crop_list);
 				crop_list = NULL;
+			}
+			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "iterator") == 0) {
+				cout << "Simulating iterator..." << endl;
+
+				const char* bag[10] = \
+				{ "pencil case", "calculator", "mouse", "laptop", "usb cable", "water bottle", \
+					"biscuit", "rough paper", "tissue paper", "hand sanitizer"};
+
+				_process_1d_iterator(bag, 10);
 			}
 		}
 		else if (count == 1) {
@@ -283,4 +297,72 @@ int main() {
 
 void printWelcomeBanner(void) {
 	cout << "Welcome to Small Small World~" << endl;
+}
+
+
+void _process_1d_iterator(const char* bag_ptr[], int size) {
+	Iterator1D* iter_1d = new Iterator1D(bag_ptr, 10);
+	Iterator1D* iter_1d_new = new Iterator1D(bag_ptr, 10);
+
+	printf("All 10 items in 1D array\n[");
+	for (int i = 0; i < 10; i++) {
+		printf("%s, ", bag_ptr[i]);
+	}
+	printf("]\n\n");
+
+	cout << "Post increment 10 times..." << endl;
+	_1d_iter_post_increment(iter_1d, 10);
+	LINE;
+
+	iter_1d->resetIndex();
+
+	cout << "Post decrement 10 times starting from index=0..." << endl;
+	_1d_iter_post_decrement(iter_1d, 10);
+	LINE;
+
+	// comparison
+	iter_1d->resetIndex(); // index=0
+
+	compare_iterators(iter_1d, iter_1d_new, 2);
+
+
+	//LINE; // caterred by main already :)
+
+	delete iter_1d;
+	delete iter_1d_new;
+
+	iter_1d = NULL;
+	iter_1d_new = NULL;
+}
+
+void _1d_iter_post_increment(Iterator1D* iter, int times) {
+	cout << "Current item: " << **iter << ", index: " << iter->getCurrentIndex() << endl;
+
+	for (int i = 0; i <= times; i++) {
+		cout << "Count: " << i << ", item: " << **iter << ", index: " << iter->getCurrentIndex() << endl;
+		(*iter)++;
+	}
+}
+
+void _1d_iter_post_decrement(Iterator1D* iter, int times) {
+	cout << "Current item: " << **iter << ", index: " << iter->getCurrentIndex() << endl;
+
+	for (int i = 0; i <= times; i++) {
+		cout << "Count: " << i << ", item: " << **iter << ", index: " << iter->getCurrentIndex() << endl;
+		(*iter)--;
+	}
+}
+
+void compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times) {
+	for (int i = 0; i < times; i++) {
+		if (*iter_1d == iter_1d_new) {
+			cout << "Both iterators are at the same position" << endl;
+
+			cout << "1st iterator current item: " << **iter_1d << endl;
+			cout << "2nd iterator current item: " << **iter_1d_new << endl;
+			printf("\n");
+		}
+		(*iter_1d)++;
+		(*iter_1d_new)++;
+	}
 }
