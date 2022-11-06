@@ -51,19 +51,6 @@ void inspect_crops(CropsListSingle* list) {
 	}
 }
 
-Crop* find_crop(CropsListSingle** list, unsigned int crop_id) {
-	if ( sll_is_empty(*list) )
-		return NULL;
-
-	CropNode* found = (*list)->head;
-	while ( found && (found->getCrop()->getID() != crop_id) ) {
-
-		found = found->getNextCropNode();
-	}
-
-	return found->getCrop();
-}
-
 void plant_crop_as_head(CropsListSingle** list, unsigned int crop_id, const char* crop_name) {
 	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
 	CropNode* node = new CropNode(crop);
@@ -79,6 +66,15 @@ void plant_crop_as_tail(CropsListSingle** list, unsigned int crop_id, const char
 
 	plant_crop_node_as_tail(list, node);
 }
+
+
+void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* crop_name, int location) {
+	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
+	CropNode* node = new CropNode(crop);
+
+	plant_crop_node_at(list, node, location);
+}
+
 
 void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node) {
 	if (sll_is_full(*list))
@@ -116,13 +112,6 @@ void plant_crop_node_as_tail(CropsListSingle** list, CropNode* crop_node) {
 	(*list)->total_crops++;
 }
 
-void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* crop_name, int location) {
-	Crop* crop = new Crop("Player", crop_name, crop_id, 5, 5, 50, 50, 50, 50, "active", false);
-	CropNode* node = new CropNode(crop);
-
-	plant_crop_node_at(list, node, location);
-}
-
 /// <summary>
 /// Plants at (location + 1)th, ie inserts the node after the specified location
 /// </summary>
@@ -144,6 +133,19 @@ void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int locatio
 		temp->setNextCropNode(crop_node);
 		(*list)->total_crops++;
 	}
+}
+
+Crop* find_crop(CropsListSingle** list, unsigned int crop_id) {
+	if (sll_is_empty(*list))
+		return NULL;
+
+	CropNode* found = (*list)->head;
+	while (found && (found->getCrop()->getID() != crop_id)) {
+
+		found = found->getNextCropNode();
+	}
+
+	return found->getCrop();
 }
 
 void purge_crop(CropsListSingle** list, unsigned int crop_id) {
