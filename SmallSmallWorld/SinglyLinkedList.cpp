@@ -146,6 +146,36 @@ void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int locatio
 	}
 }
 
+void purge_crop(CropsListSingle** list, unsigned int crop_id) {
+
+	// get the actual node
+	CropNode* to_delete= (*list)->head;
+	while (to_delete && (to_delete->getCrop()->getID() != crop_id)) {
+		to_delete = to_delete->getNextCropNode();
+	}
+	//cout << "Found the node" << endl;
+	//found->getCrop()->displayInfo();
+
+	if ( (*list)->head == to_delete ) {
+		if ( (*list)->head->getNextCropNode() == NULL ) {
+			(*list)->head = (*list)->tail = NULL;
+		}
+		else {
+			(*list)->head = (*list)->head->getNextCropNode();
+		}
+	}
+	else {
+		CropNode* previous = (*list)->head;
+		while ( previous != NULL && previous->getNextCropNode() != to_delete ) {
+			previous = previous->getNextCropNode();
+		}
+		previous->setNextCropNode(to_delete->getNextCropNode());
+	}
+
+	// delete and reduce total crops
+	delete to_delete;
+	(*list)->total_crops--;
+}
 
 void purge_farm(CropsListSingle** list) {
 	while ( (*list)->head != NULL) {

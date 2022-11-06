@@ -125,10 +125,14 @@ int main() {
 				cout << "Adding peach at location 4..." << endl;
 				plant_crop_node_at(&crop_list, peach_node, 4);
 
+				cout << "" << endl;
+
 				cout << "Press enter to inspect crops..." << endl;
 				system("pause");
 
 				inspect_crops(crop_list);
+
+				cout << "" << endl;
 
 				int crop_id = 5;
 				cout << "Press enter to search crop#" << crop_id << endl;
@@ -136,11 +140,38 @@ int main() {
 				
 				Crop* found_crop = find_crop(&crop_list, crop_id);
 				if ( found_crop ) {
-					cout <<  "Found crop #" << crop_id << "-->" << found_crop->getCropName() << endl;
+					cout <<  "Found crop#" << crop_id << endl;
+					found_crop->displayInfo();
 				}
 				else {
 					cout << "Couldn't find the crop you wanted, please check your codes :)" << endl;
 				}
+
+				cout << "" << endl;
+
+				cout << "Press enter to purge crop#5" << endl;
+				system("pause");
+				purge_crop(&crop_list, crop_id);
+
+				cout << "" << endl;
+
+				cout << "Press enter to purge crop#2 (head node)" << endl;
+				system("pause");
+				purge_crop(&crop_list, 2);
+
+				cout << "" << endl;
+
+				cout << "Press enter to purge crop#4 (tail node)" << endl;
+				system("pause");
+				purge_crop(&crop_list, 4);
+
+				cout << "" << endl;
+
+				cout << "Press enter to see list of remaining crops" << endl;
+				system("pause");
+				inspect_crops(crop_list);
+
+				cout << "" << endl;
 
 				cout << "Press enter to purge all the crops..." << endl;
 				system("pause");

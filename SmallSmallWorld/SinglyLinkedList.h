@@ -38,8 +38,6 @@ void plant_crop_node_at(CropsListSingle** list, CropNode* crop_node, int locatio
 // for reading data only
 Crop* find_crop(CropsListSingle** list, unsigned int crop_id); // return Crop object, not the node
 
-// plants at the right side of the located crop
-void replant_crop(CropsListSingle* list, unsigned int crop_id, int new_location); // find_crop_node() + plant_crop_node_at()
+void purge_crop(CropsListSingle** list, unsigned int crop_id);
 
-void purge_crop(CropsListSingle* list, unsigned int crop_id);
 void purge_farm(CropsListSingle** list);
