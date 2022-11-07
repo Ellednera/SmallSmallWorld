@@ -6,6 +6,7 @@
 #include "SinglyLinkedList.h"
 #include "Iterator1D.h"
 #include "MarinateCabbage.h"
+#include "ConveyorBelt.h"
 
 using namespace std;
 
@@ -228,6 +229,42 @@ int main() {
 				cout << "Let's break the urn :)" << endl;
 				system("pause");
 				purge_urn(&urn);
+			}
+			else if (strcmp(parsedCommands[0], "harvest") == 0 && strcmp(parsedCommands[1], "crops") == 0) {
+				cout << "Harvesting crops, send for washing and selling them..." << endl;
+
+				ConveyorBelt* belt = create_stack();
+				cout << "Harvesting carrots..." << endl;
+				cout << "Queuing the carrots onto the conveyor belt..." << endl;
+
+				for (int i = 0; i < 10; i++) {
+					Crop* carrot= new Crop("Computer", "carrot", uid++, 10, 10, 10, 10, 10, 10, "active", true);
+					CropNode* carrot_node = new CropNode(carrot);
+
+					send_crop_for_washing(&belt, carrot_node);
+				}
+				
+				cout << "" << endl;
+				cout << "Let's observe the conveyor belt..." << endl;
+				system("pause");
+				observe_conveyor_belt(belt);
+
+				
+				cout << "" << endl;
+				cout << "Let's load the carrots onto the conveyor belt for washing..." << endl;
+				system("pause");
+				cout << "Loading to conveyor belt..." << endl;
+				wash_dry_and_sell_crop(&belt);
+
+				cout << "" << endl;
+				cout << "Let's observe the conveyor belt again..." << endl;
+				system("pause");
+				observe_conveyor_belt(belt);
+
+				cout << "" << endl;
+				cout << "Let's remove the conveyor belt :)" << endl;
+				system("pause");
+				purge_conveyor_belt(&belt);
 			}
 		}
 		else if (count == 1) {
