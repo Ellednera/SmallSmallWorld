@@ -45,9 +45,6 @@
     <ClCompile Include="Iterator1D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MarinateCabbage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Iterator1D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MarinateCabbage.h">

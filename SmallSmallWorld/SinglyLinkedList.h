@@ -18,8 +18,8 @@ typedef struct crops_singly_link_list {
 CropsListSingle* initialise_partial_list(void);
 
 // helper functions
-bool is_empty(CropsListSingle* list);
-bool is_full(CropsListSingle* list);
+bool sll_is_empty(CropsListSingle* list);
+bool sll_is_full(CropsListSingle* list);
 Crop* get_head_crop(CropsListSingle* list); // returning an actual Crop object
 Crop* get_tail_crop(CropsListSingle* list); // returning an actual Crop object
 

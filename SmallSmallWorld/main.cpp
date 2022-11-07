@@ -5,7 +5,7 @@
 #include "InheritancePolymorphism.h"
 #include "SinglyLinkedList.h"
 #include "Iterator1D.h"
-#include "Stack.h"
+#include "MarinateCabbage.h"
 
 using namespace std;
 
@@ -30,6 +30,7 @@ int main() {
 	
 	printWelcomeBanner();
 	CropsListSingle* crop_list = initialise_partial_list();
+	// MarinatingUrn* urn = create_stack(); // not needed here, everything is simulated in one shot
 	
 	while ("this small small world is operating...") {
 		
@@ -193,6 +194,40 @@ int main() {
 					"biscuit", "rough paper", "tissue paper", "hand sanitizer"};
 
 				_process_1d_iterator(bag, 10);
+			}
+			else if (strcmp(parsedCommands[0], "marinate") == 0 && strcmp(parsedCommands[1], "cabbage") == 0) {
+				
+				MarinatingUrn* urn = create_stack();
+				cout << "Marinating cabbage..." << endl;
+				cout << "Adding cabbages into the urn..." << endl;
+
+				for (int i = 0; i < 10; i++ ) {
+					Crop* cabbage = new Crop("Computer", "cabbage", uid++, 10, 10, 10, 10, 10, 10, "active", true);
+					CropNode* cabbage_node = new CropNode(cabbage);
+
+					add_cabbage(&urn, cabbage_node);
+				}
+
+				cout << "" << endl;
+				cout << "Let's observe the urn..." << endl;
+				system("pause");
+				observe_urn(urn);
+
+				cout << "" << endl;
+				cout << "Let's eat all the cabbages..." << endl;
+				system("pause");
+				cout << "Eating cabbage from the urn" << endl;
+				remove_and_eat_cabbage(&urn);
+				
+				cout << "" << endl;
+				cout << "Let's observe the urn again..." << endl;
+				system("pause");
+				observe_urn(urn);
+				
+				cout << "" << endl;
+				cout << "Let's break the urn :)" << endl;
+				system("pause");
+				purge_urn(&urn);
 			}
 		}
 		else if (count == 1) {
