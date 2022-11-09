@@ -145,7 +145,13 @@ int main() {
 			else if (strcmp(parsedCommands[0], "purge") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
 				// only allow in the farm
 				if (currentSpot == FARM) {
-					purge_farm(&crop_list);
+					if (currentSpot == FARM) {
+						if (crop_list != NULL) {
+							purge_farm(&crop_list);
+						}
+						else {
+							cout << "Your farm is already gone" << endl;
+						}
 				}
 				else {
 					printf("You can only do this in the farm\n");
