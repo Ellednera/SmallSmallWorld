@@ -77,6 +77,7 @@ int main() {
 				cout << "    ->marinate cabbage: to simulate stack" << endl;
 				cout << "    ->harvest crops: to simulate queue" << endl;
 				cout << "    ->leave" << endl;
+				cout << "6. simulate bag : to simulate iterators" << endl;
 			}
 			else if (strcmp(parsedCommands[0], "cls") == 0) {
 				system("cls");
