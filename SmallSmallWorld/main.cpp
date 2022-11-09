@@ -153,6 +153,7 @@ int main() {
 						else {
 							cout << "Your farm is already gone" << endl;
 						}
+					}
 				}
 				else {
 					printf("You can only do this in the farm\n");
