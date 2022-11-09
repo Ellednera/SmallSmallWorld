@@ -9,8 +9,6 @@
 * q
   * quits the program
 
-* list crops
-
 * visit farm
 
   For simulating singly-linked list
@@ -28,5 +26,5 @@
   * marinate cabbage
 
 * leave
-  * only useful in farm, factory and delivery center
+  * only useful in farm
     

@@ -50,25 +50,68 @@ int main() {
 		printf("Total sub commands: %d\n", count);
 		
 		// command checking and response
-		if (count == 2) {
+		if (count == 1) {
+			if (strcmp(parsedCommands[0], "q") == 0) {
+				if (crop_list != NULL) {
+					purge_farm(&crop_list);
+				}
+				break;
+			}
+			else if (strcmp(parsedCommands[0], "help") == 0) {
+				cout << "1. simulate class -inheritance -polymorphism" << endl;
+				cout << "2. use human <human_id> visit <x> <y>" << endl;
+				cout << "3. cls" << endl;
+				cout << "4. q : quit the program" << endl;
+				cout << "5. visit farm" << endl;
+				cout << "    ->test crops" << endl;
+				cout << "    ->inspect crops" << endl;
+				cout << "    ->simulate farm : simulates all the singly-linked list features" << endl;
+				cout << "    ->purge farm" << endl;
+				cout << "    ->plant new crop <id> <crop_name> at head : this is buggy" << endl;
+				cout << "    ->plant new crop <id> <crop_name> at tail: this is buggy" << endl;
+				cout << "    ->marinate cabbage: to simulate stack" << endl;
+				cout << "    ->harvest crops: to simulate queue" << endl;
+				cout << "    ->leave" << endl;
+			}
+			else if (strcmp(parsedCommands[0], "cls") == 0) {
+				system("cls");
+			}
+			else if (strcmp(parsedCommands[0], "leave") == 0) {
+
+				if (canLeaveCurrentSpot) {
+					if (currentSpot == FARM) {
+						printf("You left the farm\n");
+					}
+					else if (currentSpot == FACTORY) {
+						printf("You left the factory\n");
+					}
+					else if (currentSpot == DELIVERY_CENTER) {
+						printf("You left the delivery center\n");
+					}
+					currentSpot = FLOATING;
+					canLeaveCurrentSpot = false;
+				}
+				else {
+					printf("This command is only useful in the farm, factory or delivery center\n");
+				}
+			}
+		}
+		else if (count == 2) {
 			//printf("2 words command\n");
 			if (strcmp(parsedCommands[0], "hello") == 0 && strcmp(parsedCommands[1], "world") == 0) {
 				printf("Executing `hello world`...\n");
 			}
 			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
-				// location set to (-250, -100), might be useless :)
 				printf("You're at the farm\n");
 				canLeaveCurrentSpot = true;
 				currentSpot = FARM;
 			}
 			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "factory") == 0) {
-				// location set to (0, 0), might be useless :)
 				printf("You're at the factory\n");
 				canLeaveCurrentSpot = true;
 				currentSpot = FACTORY;
 			}
 			else if (strcmp(parsedCommands[0], "visit") == 0 && strcmp(parsedCommands[1], "delivery_center") == 0) {
-				// location set to (50, -25), might be useless :)
 				printf("You're at the delivery center\n");
 				canLeaveCurrentSpot = true;
 				currentSpot = DELIVERY_CENTER;
@@ -104,6 +147,10 @@ int main() {
 				}
 			}
 			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "farm") == 0) {
+				if (currentSpot != FARM) {
+					printf("You can only do this in the farm\n");
+					continue;
+				}
 				Crop* carrot = new Crop("Computer", "carrot", uid++, 1, 1, 100, 100, 100, 100, "active", false);
 				Crop* apple = new Crop("Computer", "apple", uid++, 1, 1, 100, 100, 100, 100, "active", false);
 				Crop* banana = new Crop("Computer", "banana", uid++, 1, 1, 100, 100, 100, 100, "active", false);
@@ -267,36 +314,7 @@ int main() {
 				purge_conveyor_belt(&belt);
 			}
 		}
-		else if (count == 1) {
-			if (strcmp(parsedCommands[0], "q") == 0) {
-				if ( crop_list != NULL ) {
-					purge_farm(&crop_list);
-				}
-				break;
-			}
-			else if (strcmp(parsedCommands[0], "cls") == 0) {
-				system("cls");
-			}
-			else if (strcmp(parsedCommands[0], "leave") == 0) {
-
-				if (canLeaveCurrentSpot) {
-					if (currentSpot == FARM) {
-						printf("You left the farm\n");
-					}
-					else if (currentSpot == FACTORY) {
-						printf("You left the factory\n");
-					}
-					else if (currentSpot == DELIVERY_CENTER) {
-						printf("You left the delivery center\n");
-					}
-					currentSpot = FLOATING;
-					canLeaveCurrentSpot = false;
-				}
-				else {
-					printf("This command is only useful in the farm, factory or delivery center\n");
-				}
-			}
-		}
+		
 		else if (count == 4) {
 			// simulate class -inheritance -polymorphism :)
 			if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "class") == 0 \
