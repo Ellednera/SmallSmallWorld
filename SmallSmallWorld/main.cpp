@@ -165,7 +165,7 @@ int main() {
 				}
 				simulate_singly_linked_list(&crop_list);
 			}
-			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "iterator") == 0) {
+			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "bag") == 0) {
 
 				simulate_iterator();
 				
