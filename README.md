@@ -25,6 +25,8 @@
   * harvest crops
   * marinate cabbage
 
+* simulate iterator
+
 * leave
   * only useful in farm
     
