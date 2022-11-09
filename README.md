@@ -16,16 +16,19 @@
   * test crops
     * this tests the Crop class
   * inspect crops
+    * built-in crops will be added back if the "purge farm" was executed before, so this command is safe to run anytime
   * simulate farm
     * simulates all the features in a singly-linked list
   * purge farm
+  * marinate cabbage
+    * simulates stack
+  * harvest crops
+    * simulates queue
   * Buggy: plant new crop \<id\> \<crop_name\> at head
   * Buggy: plant new crop \<id\> \<crop_name\> at tail
 
-  * harvest crops
-  * marinate cabbage
-
-* simulate iterator
+* simulate bag
+  * simulates iterators
 
 * leave
   * only useful in farm
