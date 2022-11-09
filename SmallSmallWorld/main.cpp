@@ -18,14 +18,19 @@ enum e_spot { FLOATING, FARM, FACTORY, DELIVERY_CENTER };
 bool canLeaveCurrentSpot = false; // for farm, factory and delivery center
 e_spot currentSpot = FLOATING;
 
-
 void printWelcomeBanner(void);
 void initializeEverything(void);
 
+void simulate_struct(char** parsedCommands);
+void simulate_singly_linked_list(CropsListSingle** crop_list);
+void simulate_stack(void);
+void simulate_queue(void);
+
+void simulate_iterator(void);
 void _process_1d_iterator(const char* bag_ptr[], int size);
 void _1d_iter_post_increment(Iterator1D* iter, int times);
 void _1d_iter_post_decrement(Iterator1D* iter, int times);
-void compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times);
+void __compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times);
 
 int main() {
 	
@@ -151,167 +156,18 @@ int main() {
 					printf("You can only do this in the farm\n");
 					continue;
 				}
-				Crop* carrot = new Crop("Computer", "carrot", uid++, 1, 1, 100, 100, 100, 100, "active", false);
-				Crop* apple = new Crop("Computer", "apple", uid++, 1, 1, 100, 100, 100, 100, "active", false);
-				Crop* banana = new Crop("Computer", "banana", uid++, 1, 1, 100, 100, 100, 100, "active", false);
-				Crop* orange = new Crop("Computer", "orange", uid++, 1, 1, 100, 100, 100, 100, "active", false);
-				Crop* peach = new Crop("Computer", "peach", uid++, 1, 1, 100, 100, 100, 100, "active", false);
-
-				// for planting as head
-				CropNode* carrot_node = new CropNode(carrot);
-				CropNode* apple_node = new CropNode(apple);
-				// for planting as tail
-				CropNode* banana_node = new CropNode(banana);
-				CropNode* orange_node = new CropNode(orange);
-				// for random insertion
-				CropNode* peach_node = new CropNode(peach);
-
-				system("pause");
-
-				cout << "Adding carrot at head..." << endl;
-				plant_crop_node_as_head(&crop_list, carrot_node);
-				cout << "Adding apple at head..." << endl;
-				plant_crop_node_as_head(&crop_list, apple_node);
-
-				cout << "Adding banana at tail..." << endl;
-				plant_crop_node_as_tail(&crop_list, banana_node);
-				cout << "Adding orange at tail..." << endl;
-				plant_crop_node_as_tail(&crop_list, orange_node);
-
-				cout << "Adding peach at location 4..." << endl;
-				plant_crop_node_at(&crop_list, peach_node, 4);
-
-				cout << "" << endl;
-
-				cout << "Press enter to inspect crops..." << endl;
-				system("pause");
-
-				inspect_crops(crop_list);
-
-				cout << "" << endl;
-
-				int crop_id = 5;
-				cout << "Press enter to search crop#" << crop_id << endl;
-				system("pause");
-
-				Crop* found_crop = find_crop(&crop_list, crop_id);
-				if (found_crop) {
-					cout << "Found crop#" << crop_id << endl;
-					found_crop->displayInfo();
-				}
-				else {
-					cout << "Couldn't find the crop you wanted, please check your codes :)" << endl;
-				}
-
-				cout << "" << endl;
-
-				cout << "Press enter to purge crop#5" << endl;
-				system("pause");
-				purge_crop(&crop_list, crop_id);
-
-				cout << "" << endl;
-
-				cout << "Press enter to purge crop#2 (head node)" << endl;
-				system("pause");
-				purge_crop(&crop_list, 2);
-
-				cout << "" << endl;
-
-				cout << "Press enter to purge crop#4 (tail node)" << endl;
-				system("pause");
-				purge_crop(&crop_list, 4);
-
-				cout << "" << endl;
-
-				cout << "Press enter to see list of remaining crops" << endl;
-				system("pause");
-				inspect_crops(crop_list);
-
-				cout << "" << endl;
-
-				cout << "Press enter to purge all the crops..." << endl;
-				system("pause");
-				purge_farm(&crop_list);
-				crop_list = NULL;
+				simulate_singly_linked_list(&crop_list);
 			}
 			else if (strcmp(parsedCommands[0], "simulate") == 0 && strcmp(parsedCommands[1], "iterator") == 0) {
-				cout << "Simulating iterator..." << endl;
 
-				const char* bag[10] = \
-				{ "pencil case", "calculator", "mouse", "laptop", "usb cable", "water bottle", \
-					"biscuit", "rough paper", "tissue paper", "hand sanitizer"};
-
-				_process_1d_iterator(bag, 10);
+				simulate_iterator();
+				
 			}
 			else if (strcmp(parsedCommands[0], "marinate") == 0 && strcmp(parsedCommands[1], "cabbage") == 0) {
-				
-				MarinatingUrn* urn = create_stack();
-				cout << "Marinating cabbage..." << endl;
-				cout << "Adding cabbages into the urn..." << endl;
-
-				for (int i = 0; i < 10; i++ ) {
-					Crop* cabbage = new Crop("Computer", "cabbage", uid++, 10, 10, 10, 10, 10, 10, "active", true);
-					CropNode* cabbage_node = new CropNode(cabbage);
-
-					add_cabbage(&urn, cabbage_node);
-				}
-
-				cout << "" << endl;
-				cout << "Let's observe the urn..." << endl;
-				system("pause");
-				observe_urn(urn);
-
-				cout << "" << endl;
-				cout << "Let's eat all the cabbages..." << endl;
-				system("pause");
-				cout << "Eating cabbage from the urn" << endl;
-				remove_and_eat_cabbage(&urn);
-				
-				cout << "" << endl;
-				cout << "Let's observe the urn again..." << endl;
-				system("pause");
-				observe_urn(urn);
-				
-				cout << "" << endl;
-				cout << "Let's break the urn :)" << endl;
-				system("pause");
-				purge_urn(&urn);
+				simulate_stack();
 			}
 			else if (strcmp(parsedCommands[0], "harvest") == 0 && strcmp(parsedCommands[1], "crops") == 0) {
-				cout << "Harvesting crops, send for washing and selling them..." << endl;
-
-				ConveyorBelt* belt = create_stack();
-				cout << "Harvesting carrots..." << endl;
-				cout << "Queuing the carrots onto the conveyor belt..." << endl;
-
-				for (int i = 0; i < 10; i++) {
-					Crop* carrot= new Crop("Computer", "carrot", uid++, 10, 10, 10, 10, 10, 10, "active", true);
-					CropNode* carrot_node = new CropNode(carrot);
-
-					send_crop_for_washing(&belt, carrot_node);
-				}
-				
-				cout << "" << endl;
-				cout << "Let's observe the conveyor belt..." << endl;
-				system("pause");
-				observe_conveyor_belt(belt);
-
-				
-				cout << "" << endl;
-				cout << "Let's load the carrots onto the conveyor belt for washing..." << endl;
-				system("pause");
-				cout << "Loading to conveyor belt..." << endl;
-				wash_dry_and_sell_crop(&belt);
-
-				cout << "" << endl;
-				cout << "Let's observe the conveyor belt again..." << endl;
-				system("pause");
-				observe_conveyor_belt(belt);
-
-				cout << "" << endl;
-				cout << "Let's remove the conveyor belt :)" << endl;
-				system("pause");
-				purge_conveyor_belt(&belt);
+				simulate_queue();
 			}
 		}
 		
@@ -327,24 +183,9 @@ int main() {
 			// use human <object_id | human_id> visit <x> <y> 
 			if (strcmp(parsedCommands[0], "use") == 0 && strcmp(parsedCommands[1], "human") == 0 \
 				&& strcmp(parsedCommands[3], "visit") == 0) {
-				// find human id parsedCommand[1] from link list
-				// modify position
-				// for simplicity sake, just use the input id to create a new human :)
-				int human_id = atoi(parsedCommands[2]);
+
+				simulate_struct(parsedCommands);
 				
-				Human* jasmine = new Human("Player", human_id, 15, 15, 100, 100, 100, 100, "active", "female", "Jasmine", "Tan", "single");
-
-				cout << "Original position: (" << jasmine->getPosition().x << ","<< jasmine->getPosition().y << ")" << endl;
-
-				int x = atoi(parsedCommands[4]);
-				int y = atoi(parsedCommands[5]);
-				jasmine->setPosition(x, y);
-
-
-				cout << "New position: (" << jasmine->getPosition().x << "," << jasmine->getPosition().y << ")" << endl;
-
-				delete jasmine;
-				jasmine = NULL;
 			}
 		}
 		else if (count == 7) {
@@ -390,6 +231,190 @@ void printWelcomeBanner(void) {
 	cout << "Welcome to Small Small World~" << endl;
 }
 
+void simulate_struct(char** parsedCommands) {
+	// modify position
+	// for simplicity sake, just use the input id to create a new human :)
+	int human_id = atoi(parsedCommands[2]);
+
+	Human* jasmine = new Human("Player", human_id, 15, 15, 100, 100, 100, 100, "active", "female", "Jasmine", "Tan", "single");
+
+	cout << "Original position: (" << jasmine->getPosition().x << "," << jasmine->getPosition().y << ")" << endl;
+
+	int x = atoi(parsedCommands[4]);
+	int y = atoi(parsedCommands[5]);
+	jasmine->setPosition(x, y);
+
+	cout << "New position: (" << jasmine->getPosition().x << "," << jasmine->getPosition().y << ")" << endl;
+
+	delete jasmine;
+	jasmine = NULL;
+}
+
+void simulate_singly_linked_list(CropsListSingle** crop_list) {
+	Crop* carrot = new Crop("Computer", "carrot", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+	Crop* apple = new Crop("Computer", "apple", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+	Crop* banana = new Crop("Computer", "banana", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+	Crop* orange = new Crop("Computer", "orange", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+	Crop* peach = new Crop("Computer", "peach", uid++, 1, 1, 100, 100, 100, 100, "active", false);
+
+	// for planting as head
+	CropNode* carrot_node = new CropNode(carrot);
+	CropNode* apple_node = new CropNode(apple);
+	// for planting as tail
+	CropNode* banana_node = new CropNode(banana);
+	CropNode* orange_node = new CropNode(orange);
+	// for random insertion
+	CropNode* peach_node = new CropNode(peach);
+
+	system("pause");
+
+	cout << "Adding carrot at head..." << endl;
+	plant_crop_node_as_head(crop_list, carrot_node);
+	cout << "Adding apple at head..." << endl;
+	plant_crop_node_as_head(crop_list, apple_node);
+
+	cout << "Adding banana at tail..." << endl;
+	plant_crop_node_as_tail(crop_list, banana_node);
+	cout << "Adding orange at tail..." << endl;
+	plant_crop_node_as_tail(crop_list, orange_node);
+
+	cout << "Adding peach at location 4..." << endl;
+	plant_crop_node_at(crop_list, peach_node, 4);
+
+	cout << "" << endl;
+
+	cout << "Press enter to inspect crops..." << endl;
+	system("pause");
+
+	inspect_crops(*crop_list);
+
+	cout << "" << endl;
+
+	int crop_id = 5;
+	cout << "Press enter to search crop#" << crop_id << endl;
+	system("pause");
+
+	Crop* found_crop = find_crop(crop_list, crop_id);
+	if (found_crop) {
+		cout << "Found crop#" << crop_id << endl;
+		found_crop->displayInfo();
+	}
+	else {
+		cout << "Couldn't find the crop you wanted, please check your codes :)" << endl;
+	}
+
+	cout << "" << endl;
+
+	cout << "Press enter to purge crop#5" << endl;
+	system("pause");
+	purge_crop(crop_list, crop_id);
+
+	cout << "" << endl;
+
+	cout << "Press enter to purge crop#2 (head node)" << endl;
+	system("pause");
+	purge_crop(crop_list, 2);
+
+	cout << "" << endl;
+
+	cout << "Press enter to purge crop#4 (tail node)" << endl;
+	system("pause");
+	purge_crop(crop_list, 4);
+
+	cout << "" << endl;
+
+	cout << "Press enter to see list of remaining crops" << endl;
+	system("pause");
+	inspect_crops(*crop_list);
+
+	cout << "" << endl;
+
+	cout << "Press enter to purge all the crops..." << endl;
+	system("pause");
+	purge_farm(crop_list);
+	crop_list = NULL;
+}
+
+void simulate_stack(void) {
+	MarinatingUrn* urn = create_stack();
+	cout << "Marinating cabbage..." << endl;
+	cout << "Adding cabbages into the urn..." << endl;
+
+	for (int i = 0; i < 10; i++) {
+		Crop* cabbage = new Crop("Computer", "cabbage", uid++, 10, 10, 10, 10, 10, 10, "active", true);
+		CropNode* cabbage_node = new CropNode(cabbage);
+
+		add_cabbage(&urn, cabbage_node);
+	}
+
+	cout << "" << endl;
+	cout << "Let's observe the urn..." << endl;
+	system("pause");
+	observe_urn(urn);
+
+	cout << "" << endl;
+	cout << "Let's eat all the cabbages..." << endl;
+	system("pause");
+	cout << "Eating cabbage from the urn" << endl;
+	remove_and_eat_cabbage(&urn);
+
+	cout << "" << endl;
+	cout << "Let's observe the urn again..." << endl;
+	system("pause");
+	observe_urn(urn);
+
+	cout << "" << endl;
+	cout << "Let's break the urn :)" << endl;
+	system("pause");
+	purge_urn(&urn);
+}
+
+void simulate_queue(void) {
+	cout << "Harvesting crops, send for washing and selling them..." << endl;
+
+	ConveyorBelt* belt = create_stack();
+	cout << "Harvesting carrots..." << endl;
+	cout << "Queuing the carrots onto the conveyor belt..." << endl;
+
+	for (int i = 0; i < 10; i++) {
+		Crop* carrot = new Crop("Computer", "carrot", uid++, 10, 10, 10, 10, 10, 10, "active", true);
+		CropNode* carrot_node = new CropNode(carrot);
+
+		send_crop_for_washing(&belt, carrot_node);
+	}
+
+	cout << "" << endl;
+	cout << "Let's observe the conveyor belt..." << endl;
+	system("pause");
+	observe_conveyor_belt(belt);
+
+
+	cout << "" << endl;
+	cout << "Let's load the carrots onto the conveyor belt for washing..." << endl;
+	system("pause");
+	cout << "Loading to conveyor belt..." << endl;
+	wash_dry_and_sell_crop(&belt);
+
+	cout << "" << endl;
+	cout << "Let's observe the conveyor belt again..." << endl;
+	system("pause");
+	observe_conveyor_belt(belt);
+
+	cout << "" << endl;
+	cout << "Let's remove the conveyor belt :)" << endl;
+	system("pause");
+	purge_conveyor_belt(&belt);
+}
+
+void simulate_iterator(void) {
+	cout << "Simulating iterator..." << endl;
+
+	const char* bag[10] = \
+	{ "pencil case", "calculator", "mouse", "laptop", "usb cable", "water bottle", \
+		"biscuit", "rough paper", "tissue paper", "hand sanitizer"};
+
+	_process_1d_iterator(bag, 10);
+}
 
 void _process_1d_iterator(const char* bag_ptr[], int size) {
 	Iterator1D* iter_1d = new Iterator1D(bag_ptr, 10);
@@ -414,7 +439,7 @@ void _process_1d_iterator(const char* bag_ptr[], int size) {
 	// comparison
 	iter_1d->resetIndex(); // index=0
 
-	compare_iterators(iter_1d, iter_1d_new, 2);
+	__compare_iterators(iter_1d, iter_1d_new, 2);
 
 
 	//LINE; // caterred by main already :)
@@ -444,7 +469,7 @@ void _1d_iter_post_decrement(Iterator1D* iter, int times) {
 	}
 }
 
-void compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times) {
+void __compare_iterators(Iterator1D* iter_1d, Iterator1D* iter_1d_new, int times) {
 	for (int i = 0; i < times; i++) {
 		if (*iter_1d == iter_1d_new) {
 			cout << "Both iterators are at the same position" << endl;
