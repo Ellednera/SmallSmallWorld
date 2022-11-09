@@ -290,7 +290,7 @@ void simulate_singly_linked_list(CropsListSingle** crop_list) {
 
 	cout << "" << endl;
 
-	int crop_id = 5;
+	int crop_id = 302;
 	cout << "Press enter to search crop#" << crop_id << endl;
 	system("pause");
 
@@ -305,21 +305,21 @@ void simulate_singly_linked_list(CropsListSingle** crop_list) {
 
 	cout << "" << endl;
 
-	cout << "Press enter to purge crop#5" << endl;
+	cout << "Press enter to purge crop#" << crop_id << endl;
 	system("pause");
 	purge_crop(crop_list, crop_id);
 
 	cout << "" << endl;
 
-	cout << "Press enter to purge crop#2 (head node)" << endl;
+	cout << "Press enter to purge crop#"<< (*crop_list)->head->getCrop()->getID() <<" (head node)" << endl;
 	system("pause");
-	purge_crop(crop_list, 2);
+	purge_crop(crop_list, (*crop_list)->head->getCrop()->getID());
 
 	cout << "" << endl;
 
-	cout << "Press enter to purge crop#4 (tail node)" << endl;
+	cout << "Press enter to purge crop#"<< (*crop_list)->tail->getCrop()->getID() <<" (tail node)" << endl;
 	system("pause");
-	purge_crop(crop_list, 4);
+	purge_crop(crop_list, (*crop_list)->tail->getCrop()->getID());
 
 	cout << "" << endl;
 

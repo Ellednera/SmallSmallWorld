@@ -77,8 +77,8 @@ void plant_crop_at(CropsListSingle** list, unsigned int crop_id, const char* cro
 
 
 void plant_crop_node_as_head(CropsListSingle** list, CropNode* crop_node) {
-	if (sll_is_full(*list))
-		return;
+	//if (sll_is_full(*list))
+	//	return;
 
 	if ( sll_is_empty(*list) ) {
 		(*list)->head = (*list)->tail = crop_node;
